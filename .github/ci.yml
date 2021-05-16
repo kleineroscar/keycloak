@@ -56,7 +56,7 @@ jobs:
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
-          files: ~/.m2/repository/org/keycloak/**/*.tar.gz
+          files: ~/.m2/repository/org/keycloak/keycloak-server-dist/9.0.3/keycloak-server-dist-9.0.3.tar.gz
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
