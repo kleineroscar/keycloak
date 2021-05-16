@@ -1,6 +1,10 @@
 name: Keycloak CI
 
-on: [push, pull_request]
+#on: [push, pull_request]
+on:
+  push:
+    branches:
+      - SSI-2fa
 
 env:
   # workaround for Maven >= 3.8.1 (see KEYCLOAK-17812)
@@ -43,6 +47,22 @@ jobs:
           path: |
             ~/.m2/repository/org/keycloak
             !~/.m2/repository/org/keycloak/**/*.tar.gz
+            
+#       - name: Store Keycloak artifacts
+#         id: store-keycloak-distribution
+#         uses: actions/upload-artifact@v2
+#         with:
+#           name: keycloak-artifacts-distribution.zip
+#           retention-days: 3
+#           path: |
+#             ~/.m2/repository/org/keycloak/**/*.tar.gz
+            
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: ~/.m2/repository/org/keycloak/**/*.tar.gz
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Remove keycloak artifacts before caching
         if: steps.cache.outputs.cache-hit != 'true'
