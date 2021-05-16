@@ -30,6 +30,7 @@ import org.keycloak.models.UserCredentialModel;
 import org.keycloak.models.UserModel;
 import org.keycloak.models.utils.HmacOTP;
 import org.keycloak.models.utils.TimeBasedOTP;
+import org.keycloak.models.utils.SSIBasedOTP;
 
 import java.nio.charset.StandardCharsets;
 
@@ -132,6 +133,9 @@ public class OTPCredentialProvider implements CredentialProvider<OTPCredentialMo
         } else if (OTPCredentialModel.TOTP.equals(credentialData.getSubType())) {
             TimeBasedOTP validator = new TimeBasedOTP(credentialData.getAlgorithm(), credentialData.getDigits(), credentialData.getPeriod(), policy.getLookAheadWindow());
             return validator.validateTOTP(challengeResponse, secretData.getValue().getBytes(StandardCharsets.UTF_8));
+        } else if (OTPCredentialModel.SSI.equals(credentialData.getSubType())) {
+            SSIBasedOTP validator = new SSIBasedOTP();
+            return validator.validateSSIOTP();
         }
         return false;
     }

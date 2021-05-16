@@ -16,6 +16,7 @@ public class OTPCredentialModel extends CredentialModel {
 
     public static final String TOTP = "totp";
     public static final String HOTP = "hotp";
+    public static final String SSI  = "ssi";
 
     private final OTPCredentialData credentialData;
     private final OTPSecretData secretData;
