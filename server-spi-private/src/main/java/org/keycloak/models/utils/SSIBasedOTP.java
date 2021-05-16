@@ -27,7 +27,6 @@ package org.keycloak.models.utils;
 public class SSIBasedOTP {
 
     public SSIBasedOTP() {
-        // this();
     }
 
     /**
