@@ -1,10 +1,6 @@
 name: Keycloak CI
 
-#on: [push, pull_request]
-on:
-  push:
-    branches:
-      - SSI-2fa
+on: [push, pull_request]
 
 env:
   # workaround for Maven >= 3.8.1 (see KEYCLOAK-17812)
