@@ -52,12 +52,17 @@ jobs:
 #           path: |
 #             ~/.m2/repository/org/keycloak/**/*.tar.gz
             
-      - name: Release
-        uses: softprops/action-gh-release@v1
+      # - name: Release
+      #   uses: softprops/action-gh-release@v1
+      #   with:
+      #     files: ~/.m2/repository/org/keycloak/keycloak-server-dist/9.0.3/keycloak-server-dist-9.0.3.tar.gz
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Update release
+        uses: johnwbyrd/update-release@v1
         with:
+          token: ${{ secrets.GITHUB_TOKEN }}
           files: ~/.m2/repository/org/keycloak/keycloak-server-dist/9.0.3/keycloak-server-dist-9.0.3.tar.gz
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Remove keycloak artifacts before caching
         if: steps.cache.outputs.cache-hit != 'true'
