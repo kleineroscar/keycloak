@@ -43,21 +43,9 @@ jobs:
             ~/.m2/repository/org/keycloak
             !~/.m2/repository/org/keycloak/**/*.tar.gz
             
-#       - name: Store Keycloak artifacts
-#         id: store-keycloak-distribution
-#         uses: actions/upload-artifact@v2
-#         with:
-#           name: keycloak-artifacts-distribution.zip
-#           retention-days: 3
-#           path: |
-#             ~/.m2/repository/org/keycloak/**/*.tar.gz
-            
-      # - name: Release
-      #   uses: softprops/action-gh-release@v1
-      #   with:
-      #     files: ~/.m2/repository/org/keycloak/keycloak-server-dist/9.0.3/keycloak-server-dist-9.0.3.tar.gz
-      #   env:
-      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: list files
+        run: ls -R
+
       - name: Update release
         uses: johnwbyrd/update-release@v1.0.0
         with:
