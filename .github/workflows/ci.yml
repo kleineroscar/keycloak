@@ -62,7 +62,7 @@ jobs:
         uses: johnwbyrd/update-release@v1.0.0
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          files: ~/.m2/repository/org/keycloak/keycloak-server-dist/9.0.3/keycloak-server-dist-9.0.3.tar.gz
+          files: ./distribution/server-dist/target/keycloak-server-9.0.3.tar.gz
 
       - name: Remove keycloak artifacts before caching
         if: steps.cache.outputs.cache-hit != 'true'
